@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Delicious Food, Delivered')}"></head>
+<body>
+<header th:replace="~{fragments :: nav}"></header>
+
+<section class="hero" style="background-image:linear-gradient(90deg,rgba(28,14,6,.82),rgba(28,14,6,.35)),url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1800&q=85')">
+  <div class="container hero-inner">
+    <span class="kicker light">Fresh · Fast · Flavourful</span>
+    <h1>Delicious Food, Delivered to Your Doorstep</h1>
+    <p>Order from the best restaurants around you and enjoy hot, freshly prepared meals in minutes.</p>
+    <form class="hero-search" th:action="@{/search}" method="get">
+      <input type="search" name="q" placeholder="Search for restaurants or food items…" required>
+      <button class="btn">Search</button>
+    </form>
+    <a class="btn btn-light" th:href="@{/restaurants}">Explore Restaurants</a>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="section-head"><span class="kicker">What are you craving?</span><h2>Popular Food Categories</h2></div>
+  <div class="grid-4">
+    <a class="tile imgbox" th:each="c : ${categories}" th:href="@{/restaurants(category=${c.name})}">
+     
+    <img th:if="${c.name == 'South Indian'}"
+     th:src="@{/images/categories/south-indian.jpg}" 
+     alt="South Indian Food" loading="lazy">
+      <img th:if="${c.name == 'North Indian'}"
+       th:src="@{/images/categories/north-indian.jpg}" 
+       alt="North Indian Food" loading="lazy"> 
+       <img th:if="${c.name == 'Chinese'}" 
+       th:src="@{/images/categories/chinese.jpg}"
+        alt="Chinese Food" loading="lazy">
+         <img th:if="${c.name == 'Fast Food'}" 
+         th:src="@{/images/categories/fast-food.jpg}"
+         alt="Fast Food" loading="lazy">
+          <img th:if="${c.name == 'Pizza & Burgers'}"
+           th:src="@{/images/categories/pizza-burgers.jpg}" 
+           alt="Pizza and Burgers" loading="lazy">
+        <img th:if="${c.name == 'Bakery & Desserts'}" 
+        th:src="@{/images/categories/bakery-desserts.jpg}"
+         alt="Bakery and Desserts" loading="lazy"> 
+         <img th:if="${c.name == 'Healthy Food'}"
+          th:src="@{/images/categories/healthy-food.jpg}"
+           alt="Healthy Food" loading="lazy">
+            <img th:if="${c.name == 'Beverages'}"
+             th:src="@{/images/categories/beverages.jpg}"
+              alt="Beverages" loading="lazy">
+      <span class="tile-label" th:text="${c.name}">Category</span>
+    </a>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Top rated</span><h2>Featured Restaurants</h2></div>
+    <div class="grid-4">
+      <th:block th:each="r : ${featured}"><div th:replace="~{fragments :: restCard(${r})}"></div></th:block>
+    </div>
+    <p class="center mt"><a class="btn btn-outline" th:href="@{/restaurants}">View All Restaurants</a></p>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="section-head"><span class="kicker">Customer favourites</span><h2>Best-Selling Food Items</h2></div>
+  <div class="grid-4">
+    <th:block th:each="m : ${bestSellers}"><div th:replace="~{fragments :: foodCard(${m}, true)}"></div></th:block>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Save more</span><h2>Special Offers &amp; Discounts</h2></div>
+    <div class="grid-3">
+      <a class="offer imgbox" th:href="@{/restaurants(category='North Indian')}">
+        ```html
+<img th:src="@{/images/offers/biryani-offer.jpg}"
+     alt="Biryani Offer"
+     loading="lazy"
+     onerror="this.style.display='none';">
+```
+        
+        <div class="offer-body"><small>Biryani Feast</small><h3>Up to 15% off on Biryani</h3><span class="btn btn-sm btn-light">Order Now</span></div>
+      </a>
+      <a class="offer imgbox" th:href="@{/restaurants(category='Bakery & Desserts')}">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85" alt="" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('noimg')">
+        <div class="offer-body"><small>Sweet Deals</small><h3>Cakes &amp; Desserts from ₹70</h3><span class="btn btn-sm btn-light">Order Now</span></div>
+      </a>
+      <a class="offer imgbox" th:href="@{/restaurants(category='Pizza & Burgers')}">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=85" alt="" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('noimg')">
+        <div class="offer-body"><small>Pizza Night</small><h3>Save up to ₹50 on Pizzas</h3><span class="btn btn-sm btn-light">Order Now</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="section-head"><span class="kicker">Testimonials</span><h2>What Our Customers Say</h2></div>
+  <div class="grid-3">
+    <blockquote class="review"><div class="stars" style="--r:5">★★★★★</div>
+      <p>The biryani arrived piping hot and tasted exactly like it came from the restaurant kitchen. Delivery was quicker than promised.</p><cite>Priya S.</cite></blockquote>
+    <blockquote class="review"><div class="stars" style="--r:5">★★★★★</div>
+      <p>So many restaurants in one place, and the menus are easy to filter. Our family orders breakfast dosas every weekend.</p><cite>Arun K.</cite></blockquote>
+    <blockquote class="review"><div class="stars" style="--r:4.5">★★★★★</div>
+      <p>Great packaging and fresh food. The dessert menu is my favourite — the brownies never disappoint.</p><cite>Meera R.</cite></blockquote>
+  </div>
+</section>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

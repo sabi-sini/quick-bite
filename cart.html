@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments :: head('Your Cart')}"></head>
+<body>
+<header th:replace="~{fragments :: nav}"></header>
+<section class="page-hero"><div class="container"><span class="kicker">Almost there</span><h1>Your Cart</h1></div></section>
+
+<main class="container section tight">
+  <div class="empty" th:if="${#lists.isEmpty(cart.lines)}">
+    <p>Your cart is empty.</p><a class="btn" th:href="@{/restaurants}">Browse Restaurants</a>
+  </div>
+
+  <div class="cart-grid" th:unless="${#lists.isEmpty(cart.lines)}">
+    <div class="cart-list">
+      <div class="cart-row" th:each="l : ${cart.lines}">
+        <div class="cart-thumb imgbox">
+          <img th:src="${l.imageUrl}" th:alt="${l.name}" onerror="this.style.display='none';this.parentNode.classList.add('noimg')">
+        </div>
+        <div class="cart-info">
+          <strong th:text="${l.name}">Item</strong>
+          <span class="muted" th:text="'₹' + ${l.price} + ' each'"></span>
+          <form th:action="@{/cart/remove/{id}(id=${l.itemId})}" method="post" class="inline"><button class="link-btn">Remove</button></form>
+        </div>
+        <div class="qty">
+          <form th:action="@{/cart/dec/{id}(id=${l.itemId})}" method="post"><button aria-label="Decrease">−</button></form>
+          <span th:text="${l.qty}">1</span>
+          <form th:action="@{/cart/add/{id}(id=${l.itemId})}" method="post"><input type="hidden" name="back" value="/cart"><button aria-label="Increase">+</button></form>
+        </div>
+        <div class="line-total" th:text="'₹' + ${l.subtotal}">₹0</div>
+      </div>
+    </div>
+
+    <aside class="summary">
+      <h3>Order Summary</h3>
+      <div class="sum-row"><span>Items</span><span th:text="${cart.count}">0</span></div>
+      <div class="sum-row total"><span>Total</span><span th:text="'₹' + ${cart.total}">₹0</span></div>
+
+      <form th:action="@{/orders}" method="post" sec:authorize="isAuthenticated()" class="stack">
+        <label>Delivery address
+          <textarea name="address" required rows="3" placeholder="Flat, street, area, city, pincode"></textarea></label>
+        <button class="btn btn-block">Checkout · Place Order</button>
+        <small class="muted">Payment: Cash on delivery</small>
+      </form>
+      <div sec:authorize="!isAuthenticated()" class="stack">
+        <p class="muted">Log in to place your order. Your cart will be kept.</p>
+        <a class="btn btn-block" th:href="@{/login}">Login to Checkout</a>
+        <a class="btn btn-block btn-outline" th:href="@{/register}">Create Account</a>
+      </div>
+      <a class="muted center-link" th:href="@{/restaurants}">← Continue shopping</a>
+    </aside>
+  </div>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

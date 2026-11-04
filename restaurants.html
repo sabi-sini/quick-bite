@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Restaurants')}"></head>
+<body>
+<header th:replace="~{fragments :: nav}"></header>
+<section class="page-hero"><div class="container">
+  <span class="kicker">Order from the best</span><h1>Restaurants</h1>
+  <p class="muted">Pick a cuisine or search by name to find something delicious.</p>
+</div></section>
+<main class="container section tight">
+  <form class="filter-search" th:action="@{/restaurants}" method="get">
+    <input type="hidden" name="category" th:value="${category}">
+    <input type="search" name="q" th:value="${q}" placeholder="Search restaurants or cuisines…">
+    <button class="btn btn-sm">Search</button>
+  </form>
+  <div class="pills">
+    <a class="pill" th:href="@{/restaurants}" th:classappend="${category == null or category == ''} ? 'active'">All</a>
+    <a class="pill" th:each="c : ${categories}" th:href="@{/restaurants(category=${c.name})}"
+       th:classappend="${c.name == category} ? 'active'" th:text="${c.name}">Category</a>
+  </div>
+  <p class="result-count" th:text="${#lists.size(restaurants)} + ' restaurant(s) found'"></p>
+  <div class="grid-4">
+    <th:block th:each="r : ${restaurants}"><div th:replace="~{fragments :: restCard(${r})}"></div></th:block>
+  </div>
+  <p class="empty" th:if="${#lists.isEmpty(restaurants)}">No restaurants match your search. <a th:href="@{/restaurants}">Show all</a></p>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head(${restaurant.name})}"></head>
+<body>
+<header th:replace="~{fragments :: nav}"></header>
+
+<section class="menu-hero" th:style="'background-image:linear-gradient(90deg,rgba(28,14,6,.85),rgba(28,14,6,.45)),url(' + ${restaurant.imageUrl} + ')'">
+  <div class="container">
+    <a class="back" th:href="@{/restaurants}">← All restaurants</a>
+    <span class="chip solid" th:text="${restaurant.category}">Category</span>
+    <h1 th:text="${restaurant.name}">Restaurant</h1>
+    <p th:text="${restaurant.description}">Description</p>
+    <div class="rest-stats light">
+      <span class="rate-pill">★ <b th:text="${#numbers.formatDecimal(restaurant.rating,1,1,'POINT')}">4.5</b></span>
+      <span th:text="'(' + ${#numbers.formatInteger(restaurant.reviewCount,1,'COMMA')} + ' reviews)'"></span>
+      <span class="dot">•</span><span th:text="${restaurant.deliveryMinutes} + ' min delivery'"></span>
+      <span class="dot">•</span><span th:text="${restaurant.cuisine}"></span>
+    </div>
+  </div>
+</section>
+
+<main class="container section tight">
+  <div class="toolbar">
+    <div class="pills" id="pills">
+      <button type="button" class="pill active" data-cat="all">All</button>
+      <button type="button" class="pill" th:each="c : ${categories}" th:attr="data-cat=${c}" th:text="${c}">Dosa</button>
+    </div>
+    <div class="controls">
+      <input type="search" id="menuSearch" placeholder="Search dishes…">
+      <select id="priceSel" aria-label="Price filter">
+        <option value="0">Any price</option><option value="100">Under ₹100</option>
+        <option value="150">Under ₹150</option><option value="200">Under ₹200</option><option value="300">Under ₹300</option>
+      </select>
+      <select id="sortSel" aria-label="Sort">
+        <option value="featured">Sort: Featured</option><option value="popular">Most popular</option>
+        <option value="rating">Top rated</option><option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+      </select>
+      <label class="toggle"><input type="checkbox" id="vegOnly"> <span>Veg only</span></label>
+    </div>
+  </div>
+  <p class="result-count" id="resultCount"></p>
+
+  <div class="grid-4" id="menuGrid">
+    <th:block th:each="m : ${restaurant.menuItems}"><div th:replace="~{fragments :: foodCard(${m}, false)}"></div></th:block>
+  </div>
+  <p class="empty" id="emptyMsg" hidden>No dishes match your filters. Try clearing the search or price filter.</p>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

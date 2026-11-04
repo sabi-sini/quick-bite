@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Search')}"></head>
+<body>
+<header th:replace="~{fragments :: nav}"></header>
+<section class="page-hero"><div class="container">
+  <span class="kicker">Search results</span>
+  <h1 th:text="${q.isBlank()} ? 'Search' : '“' + ${q} + '”'">Search</h1>
+</div></section>
+<main class="container section tight">
+  <form class="filter-search" th:action="@{/search}" method="get">
+    <input type="search" name="q" th:value="${q}" placeholder="Search restaurants or dishes…">
+    <button class="btn btn-sm">Search</button>
+  </form>
+  <p class="empty" th:if="${#lists.isEmpty(restaurants) and #lists.isEmpty(dishes)}">Nothing found. Try “biryani”, “pizza” or “dosa”.</p>
+
+  <th:block th:unless="${#lists.isEmpty(restaurants)}">
+    <h2 class="sub-title">Restaurants</h2>
+    <div class="grid-4"><th:block th:each="r : ${restaurants}"><div th:replace="~{fragments :: restCard(${r})}"></div></th:block></div>
+  </th:block>
+  <th:block th:unless="${#lists.isEmpty(dishes)}">
+    <h2 class="sub-title">Dishes</h2>
+    <div class="grid-4"><th:block th:each="m : ${dishes}"><div th:replace="~{fragments :: foodCard(${m}, true)}"></div></th:block></div>
+  </th:block>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

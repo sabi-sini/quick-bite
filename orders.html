@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('My Orders')}"></head>
+<body>
+<header th:replace="~{fragments :: nav}"></header>
+<section class="page-hero"><div class="container"><span class="kicker">Your history</span><h1>My Orders</h1></div></section>
+<main class="container section tight narrow-w">
+  <div class="flash ok" th:if="${placed}" th:text="'Order #' + ${placed} + ' placed successfully! Your food is on its way.'"></div>
+  <p class="empty" th:if="${#lists.isEmpty(orders)}">No orders yet. <a th:href="@{/restaurants}">Order something tasty</a></p>
+  <div class="order-card" th:each="o : ${orders}">
+    <div class="order-head">
+      <strong th:text="'Order #' + ${o.id}">#1</strong>
+      <span class="chip solid" th:text="${o.status}">PLACED</span>
+    </div>
+    <div class="muted" th:text="${#temporals.format(o.createdAt, 'dd MMM yyyy, HH:mm')}"></div>
+    <ul>
+      <li th:each="i : ${o.items}" th:text="${i.quantity} + ' × ' + ${i.itemName} + ' — ₹' + ${i.price}"></li>
+    </ul>
+    <div class="muted" th:text="'Deliver to: ' + ${o.deliveryAddress}"></div>
+    <strong th:text="'Total: ₹' + ${o.total}"></strong>
+  </div>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

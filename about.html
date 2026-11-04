@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('About Us')}"></head>
+<body>
+<header th:replace="~{fragments :: nav}"></header>
+
+<section class="page-hero"><div class="container">
+  <span class="kicker">Our story</span><h1>About QuickBite</h1>
+  <p class="muted">Great food from local kitchens, delivered with care.</p>
+</div></section>
+
+<section class="section container">
+  <div class="split">
+    <div class="imgbox split-img">
+      <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=85" alt="Fresh food being prepared" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('noimg')">
+    </div>
+    <div>
+      <span class="kicker">Who we are</span>
+      <h2>Bringing your favourite restaurants to your door</h2>
+      <p>QuickBite is an online food ordering platform that connects hungry customers with the best restaurants in town — from South Indian tiffin and North Indian curries to pizzas, Chinese, desserts and fresh juices.</p>
+      <p>We started with a simple idea: ordering food should be easy, the food should arrive hot, and the experience should feel as good as the meal.</p>
+      <h3 class="mt">Our Mission</h3>
+      <p>To make delicious, freshly prepared food accessible to everyone, while supporting the local restaurants and kitchens that make our city taste great.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-head"><span class="kicker">Our promise</span><h2>Our Quality Standards</h2></div>
+    <div class="grid-4">
+      <div class="feature"><div class="f-no">01</div><h3>Fresh Ingredients</h3><p>Partner restaurants prepare every dish to order using fresh ingredients.</p></div>
+      <div class="feature"><div class="f-no">02</div><h3>Hygiene First</h3><p>We work only with kitchens that follow strict food-safety and hygiene practices.</p></div>
+      <div class="feature"><div class="f-no">03</div><h3>Hot &amp; On Time</h3><p>Insulated packaging and efficient delivery keep your meal hot and on schedule.</p></div>
+      <div class="feature"><div class="f-no">04</div><h3>Honest Reviews</h3><p>Ratings come from real customers, so you always know what to expect.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="split reverse">
+    <div class="imgbox split-img">
+      <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=1000&q=85" alt="Food delivery" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('noimg')">
+    </div>
+    <div>
+      <span class="kicker">Why choose us</span>
+      <h2>Why customers love QuickBite</h2>
+      <ul class="checks">
+        <li><b>Wide variety</b> – South Indian, North Indian, Chinese, pizzas, desserts, healthy bowls and beverages.</li>
+        <li><b>Fast delivery</b> – most orders reach you in 20–40 minutes.</li>
+        <li><b>Easy ordering</b> – search, filter by price or veg, and add to cart in a tap.</li>
+        <li><b>Great value</b> – regular discounts on customer favourites.</li>
+        <li><b>Friendly support</b> – our team is always a message away.</li>
+      </ul>
+      <a class="btn" th:href="@{/restaurants}">Start Ordering</a>
+    </div>
+  </div>
+</section>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>
