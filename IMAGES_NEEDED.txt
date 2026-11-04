@@ -1,0 +1,103 @@
+QuickBite – PHOTOS TO ADD (all .jpg, saved under src/main/resources/static/images/)
+Use real food photography. Tips: landscape/square, ~800x800 px (food) or 1200x900 (restaurants), < 200 KB each.
+Any missing file shows a neutral plate placeholder (no emoji) until you add it.
+
+hero/hero.jpg            (large banner, ~1920x900)
+
+== food/ (one photo per dish) ==
+food/avocado-toast.jpg
+food/berry-smoothie-bowl.jpg
+food/black-forest-cake.jpg
+food/butter-chicken.jpg
+food/butter-croissant.jpg
+food/butter-naan.jpg
+food/cheese-burger.jpg
+food/chicken-65.jpg
+food/chicken-biryani.jpg
+food/chicken-burger.jpg
+food/chicken-fried-rice.jpg
+food/chicken-noodles.jpg
+food/chicken-shawarma.jpg
+food/chilli-chicken.jpg
+food/chocolate-brownie.jpg
+food/chocolate-shake.jpg
+food/chocolate-truffle-cake.jpg
+food/classic-burger.jpg
+food/cold-coffee.jpg
+food/dal-makhani.jpg
+food/egg-biryani.jpg
+food/farmhouse-pizza.jpg
+food/filter-coffee.jpg
+food/french-fries.jpg
+food/fresh-orange-juice.jpg
+food/garlic-bread.jpg
+food/garlic-naan.jpg
+food/ghee-roast-dosa.jpg
+food/gobi-manchurian.jpg
+food/greek-salad.jpg
+food/grilled-chicken.jpg
+food/grilled-chicken-salad.jpg
+food/gulab-jamun.jpg
+food/idli.jpg
+food/jeera-rice.jpg
+food/mango-shake.jpg
+food/margherita-pizza.jpg
+food/masala-dosa.jpg
+food/medu-vada.jpg
+food/mint-lemonade.jpg
+food/mutton-biryani.jpg
+food/onion-dosa.jpg
+food/paneer-butter-masala.jpg
+food/paneer-tikka.jpg
+food/paper-roast.jpg
+food/parotta.jpg
+food/penne-alfredo.jpg
+food/pepperoni-pizza.jpg
+food/plain-dosa.jpg
+food/pomegranate-juice.jpg
+food/pongal.jpg
+food/poori-masala.jpg
+food/quinoa-veggie-bowl.jpg
+food/red-velvet-pastry.jpg
+food/smash-burger.jpg
+food/south-indian-meals.jpg
+food/sprouts-salad.jpg
+food/strawberry-ice-cream.jpg
+food/sweet-lime-juice.jpg
+food/vanilla-ice-cream.jpg
+food/veg-biryani.jpg
+food/veg-burger.jpg
+food/veg-fried-rice.jpg
+food/veg-hakka-noodles.jpg
+food/veg-manchow-soup.jpg
+food/watermelon-juice.jpg
+
+== restaurants/ ==
+restaurants/dosa-corner.jpg
+restaurants/burger-house.jpg
+restaurants/biryani-palace.jpg
+restaurants/punjab-tadka.jpg
+restaurants/dragon-wok.jpg
+restaurants/pizza-palace.jpg
+restaurants/sweet-crumbs.jpg
+restaurants/green-bowl.jpg
+restaurants/juice-junction.jpg
+
+== categories/ (home page tiles) ==
+categories/south-indian.jpg
+categories/north-indian.jpg
+categories/chinese.jpg
+categories/fast-food.jpg
+categories/pizza-burgers.jpg
+categories/bakery-desserts.jpg
+categories/healthy-food.jpg
+categories/beverages.jpg
+
+== offers/ ==
+offers/biryani-offer.jpg
+offers/dessert-offer.jpg
+offers/pizza-offer.jpg
+
+== about/ ==
+about/story.jpg
+about/delivery.jpg
